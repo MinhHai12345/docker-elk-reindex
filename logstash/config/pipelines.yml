@@ -1,0 +1,15 @@
+- pipeline.id: smm-comment-ninja
+  path.config: "/usr/share/logstash/pipeline/smm-comment-ninja.conf"
+  queue.type: persisted
+- pipeline.id: smm-feed-ninja
+  path.config: "/usr/share/logstash/pipeline/smm-feed-ninja.conf"
+  queue.type: persisted
+- pipeline.id: smm-share-ninja
+  path.config: "/usr/share/logstash/pipeline/smm-share-ninja.conf"
+  queue.type: persisted
+- pipeline.id: smm-comment
+  path.config: "/usr/share/logstash/pipeline/smm-comment.conf"
+  queue.type: persisted
+- pipeline.id: smm-feed
+  path.config: "/usr/share/logstash/pipeline/smm-feed.conf"
+  queue.type: persisted

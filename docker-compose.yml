@@ -1,0 +1,38 @@
+version: '3.2'
+
+services:
+  logstash:
+    build:
+      context: logstash/
+      args:
+        ELK_VERSION: $ELK_VERSION
+    volumes:
+      - type: bind
+        source: ./logstash/config/logstash.yml
+        target: /usr/share/logstash/config/logstash.yml
+        read_only: true
+      - type: bind
+        source: ./logstash/config/pipelines.yml
+        target: /usr/share/logstash/config/pipelines.yml
+        read_only: true
+      - type: bind
+        source: ./logstash/pipeline
+        target: /usr/share/logstash/pipeline
+        read_only: true
+    ports:
+      - "5001:5000"
+      - "9601:9600"
+    environment:
+      LS_JAVA_OPTS: "-Xmx2g -Xms2g"
+    networks:
+      - elkFlix
+    # depends_on:
+    #   - elasticsearch
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+networks:
+
+  elkFlix:
+    driver: bridge
